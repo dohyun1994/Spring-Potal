@@ -60,11 +60,13 @@
 			<button type="button" onclick="location.href='boardForm.do'">글쓰기</button>
 		</c:if>
 	</div>
-	<div>
+	
+	<div>		<!--  post방식으로 처리하기 위한 hidden 타입의 폼 -->
 		<form id="readForm" method="post">
 			<input type="hidden" id="no" name="no">
 		</form>
 	</div>
+	
 </div>
 <script type="text/javascript">
 	function BoardRead(n) {
@@ -72,9 +74,6 @@
 		readForm.action = "boardRead.do";
 		readForm.submit();
 	}
-	
-	
-
 </script>
 </body>
 </html>

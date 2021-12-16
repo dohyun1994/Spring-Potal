@@ -3,7 +3,8 @@
 <mapper namespace="co.micol.potal.member.service.MemberMapper">
 	
 	<select id="memberSelectList" 	
-		parameterType="co.micol.potal.member.service.MemberVO">
+		parameterType="co.micol.potal.member.service.MemberVO"
+		resultType="co.micol.potal.member.service.MemberVO">
 		SELECT * FROM MEMBER
 		</select>
 	
@@ -17,30 +18,32 @@
 		</if>
 	</select>
 	
-	<select id="memberInsert" parameterType="co.micol.potal.member.service.MemberVO">
-		INSERT INTO MEMBER(ID, PASSWORD, NAME, TEL, ADDRESS)
-		VALUES(#{id}, #{password}, #{name}, #{tel}, #{address})
-	</select>
+	<insert id="memberInsert" parameterType="co.micol.potal.member.service.MemberVO">
+		INSERT INTO MEMBER(ID, PASSWORD, NAME, TEL, ADDRESS, IMGFILE, PIMGFILE)
+		VALUES(#{id}, #{password}, #{name}, #{tel}, #{address}, #{imgFile}, #{pimgFile})
+	</insert>
 	
-	<select id="memberUpdate" parameterType="co.micol.potal.member.service.MemberVO">
+	<update id="memberUpdate" parameterType="co.micol.potal.member.service.MemberVO">
 		UPDATE MEMBER
 		<if test="password != null"> SET PASSSWORD = #{password}</if>		<!--  id빼고 업데이트 가능. -->
 		<if test="name != null"> SET NAME = #{name}</if>
 		<if test="tel != null"> SET TEL = #{tel}</if>
 		<if test="address != null"> SET ADDRESS = #{address}</if>
 		<if test="author != null"> SET AUTHOR = #{author}</if>
+		<if test="imgFile != null"> SET IMGFILE = #{imgFile}</if>
+		<if test="pimgFile != null"> SET PIMGFILE = #{pimgFile}</if>
 		WHERE ID = #{id}
-	</select>
+	</update>
 	
 	
-	<select id="memberDelete" parameterType="co.micol.potal.member.service.MemberVO">
+	<delete id="memberDelete" parameterType="co.micol.potal.member.service.MemberVO">
 		DELETE FROM MEMBER WHERE Id = #{id}
-	</select>
+	</delete>
 
 	<select id="memberIdCheck" parameterType="String" resultType="boolean">
 		SELECT (CASE WHEN COUNT(*) =1 THEN 1 ELSE 0 END) AS RESULT
 		FROM MEMBER
-		WHERE ID ={#id} 
+		WHERE ID =#{id} 
 	</select>
 
 </mapper>
