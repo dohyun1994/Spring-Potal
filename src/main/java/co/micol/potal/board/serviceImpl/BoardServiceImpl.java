@@ -56,4 +56,10 @@ public class BoardServiceImpl implements BoardService {
 		map.boardHit(n);
 		
 	}
+
+	@Override
+	public void boardNoupdate(int n) {
+		map.boardNoupdate(n);
+		
+	}
 }
